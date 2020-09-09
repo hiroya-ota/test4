@@ -1,0 +1,21 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title> メイン画面</title>
+</head>
+<body>
+    <div align="center">
+        <h1>メイン画面</h1>
+        <input type="button" value="検索" style="width:100px;height:50px" onclick="location.href='@Url.Action("InitialSearch", "Search")'">
+        <input type="button" value="登録" style="width:100px;height:50px" onclick="location.href='@Url.Action("InitialRegistration", "Registration")'">
+        <input type="button" value="修正・削除" style="width:100px;height:50px" onclick="location.href='@Url.Action("InitialCoDe", "CorrectionDelete")'">
+    </div>
+</body>
+</html>
