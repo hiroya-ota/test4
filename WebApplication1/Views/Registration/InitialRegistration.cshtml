@@ -3,15 +3,15 @@
     Layout = null;
 }
 
-@*@model WebApplication1.Models.Flashcard
-@{}*@
+@model WebApplication1.Models.Flashcard
+@{}
 
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <script type="text/javascript" src="~/Script/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-3.4.1.js"></script>
     <script type="text/javascript">
         $(function () {
             if ($('#textWord').val().length == 0) {
@@ -82,7 +82,7 @@
                         <div class="col-md-10">
                             <label class="control-label col-md-2">単語：</label>
                             <input type="text" name="Word" maxlength="50" size="50" class="form-control" id="textWord" value="@ViewData["word"]" />
-                           @* @Html.ValidationMessageFor(model => model.Word, "", new { @class = "text-danger" })*@
+                            @Html.ValidationMessageFor(model => model.Word, "", new { @class = "text-danger" })
                         </div>
                     </li>
                     <p></p>
@@ -92,7 +92,7 @@
                         <div class="col-md-10">
                             <label class="control-label col-md-2">意味：</label>
                             <textarea name="Meaning" cols="50" rows="5" maxlength="250" class="form-control">@ViewData["meaning"]</textarea>
-                           @* @Html.ValidationMessageFor(model => model.Meaning, "", new { @class = "text-danger" })*@
+                            @Html.ValidationMessageFor(model => model.Meaning, "", new { @class = "text-danger" })
                         </div>
                     </li>
                     <p></p>
@@ -102,7 +102,7 @@
                         <div class="col-md-10">
                             <label class="control-label col-md-2">備考：</label>
                             <textarea name="Remarks" cols="50" rows="5" maxlength="250" class="form-control">@ViewData["remarks"]</textarea>
-                            @*@Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })*@
+                            @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
                         </div>
                     </li>
                     <p></p>
