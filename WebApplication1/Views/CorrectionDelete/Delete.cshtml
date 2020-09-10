@@ -1,0 +1,104 @@
+﻿@model WebApplication1.Models.Flashcard
+@{
+
+}
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="~/Script/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            if ($('#textWord').val().length == 0) {
+                $('#submit').attr('disabled', 'disabled');
+            }
+            $('#textWord').bind('keydown keyup keypress change', function () {
+                if ($(this).val().length > 0) {
+                    $('#submit').removeAttr('disabled');
+                } else {
+                    $('#submit').attr('disabled', 'disabled');
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+
+<!--
+
+        function check() {
+
+            if (window.confirm('削除してよろしいですか？')) { // 確認ダイアログを表示
+
+                return true; // 「OK」時は送信を実行
+
+            }
+            else { // 「キャンセル」時の処理
+
+                window.alert('キャンセルされました'); // 警告ダイアログを表示
+                return false; // 送信を中止
+
+            }
+
+        }
+
+        // -->
+    </script>
+
+
+    <title>Delete</title>
+</head>
+<body>
+    <div align="center">
+
+        <h3>削除確認画面</h3>
+
+
+        <dl class="dl-horizontal">
+
+            <dt>ID：@Model.ID </dt>
+
+            <dt>単語：@Model.Word</dt>
+
+            <dt>意味：@Model.Meaning</dt>
+
+            <dt>備考：@Model.Remarks</dt>
+
+        </dl>
+
+        <form method="post" onSubmit="return check()">
+
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="削除" class="btn btn-default" id="delete" formaction="DeleteConfirmed" />
+                <input type="hidden" name="id" value="@Model.ID" />
+                <input type="button" value="戻る" onclick="location.href='@Url.Action("InitialCoDe", "CorrectionDelete")'">
+            </div>
+        </form>
+
+        <script>
+            document.myform.btn.addEventListener('click', function () {
+                var result = window.confirm('送信しても宜しいですか？');
+
+                if (result) {
+
+                    //「true」の処理
+
+                }
+                else {
+
+                    //「false」の処理
+
+                }
+            })
+        </script>
+
+    </div>
+</body>
+</html>

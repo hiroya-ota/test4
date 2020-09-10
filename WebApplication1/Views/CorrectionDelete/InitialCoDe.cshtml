@@ -1,0 +1,97 @@
+﻿@{
+    Layout = null;
+}
+
+@model IEnumerable<WebApplication1.Models.Flashcard>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="C:\Users\h2-ota\source\repos\WebApplication1\jquery-3.3.1.js"></script>
+    <title>修正・削除画面</title>
+</head>
+<body>
+    <div align="center">
+        <h1>修正・削除画面</h1>
+
+        <div>
+            @using (Html.BeginForm(
+            "BtnSearch",
+            "CorrectionDelete",
+            null,
+            FormMethod.Post,
+            new { enctype = "multipart/form-data" }
+            ))
+            {
+                <b> 単語：</b>
+                @Html.TextBox("word", "", new { maxlength = 50, size = 30 })
+                <input type="submit" value="検索" />
+                <input type="button" value="戻る" onclick="location.href='@Url.Action("Main", "Main")'">
+            }
+        </div>
+
+    <font color="#ff0000">@ViewData["msg"]</font>
+
+    <h3>一覧</h3>
+
+    <table border="1" class="table" >
+        <thead>
+            <tr bgcolor="gray">
+                <th>ID</th>
+                <th>単語</th>
+                <th>意味</th>
+                <th>備考</th>
+                <th>修正</th>
+                <th>削除</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.Word</td>
+                    <td><pre>@item.Meaning</pre></td>
+                    <td><pre>@item.Remarks</pre></td>
+
+                    @using (Html.BeginForm(
+                      "Edit",
+                      "CorrectionDelete",
+                      null,
+                      FormMethod.Post,
+                      new { enctype = "multipart/form-data" }
+                    ))
+                    {
+                        <td>
+                            <input type="submit" value="編集" class="btn btn-default" />
+                            <input type="hidden" name="id" value="@item.ID" />
+                        </td>
+                    }
+                    @using (Html.BeginForm(
+                     "Delete",
+                     "CorrectionDelete",
+                     null,
+                     FormMethod.Post,
+                     new { enctype = "multipart/form-data" }
+                   ))
+                    {
+                        <td>
+                            <input type="submit" value="削除" class="btn btn-default" />
+                            <input type="hidden" name="id" value="@item.ID" />
+                        </td>
+                    }
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    </div>
+
+</body>
+</html>

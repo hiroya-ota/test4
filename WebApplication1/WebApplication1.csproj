@@ -130,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="class\ExceptionLog.cs" />
     <Compile Include="class\InputCheck.cs" />
+    <Compile Include="Controllers\CorrectionDeleteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
@@ -187,6 +188,9 @@
     <Content Include="Views\Main\Main.cshtml" />
     <Content Include="Views\Registration\InitialRegistration.cshtml" />
     <Content Include="Views\Search\InitialSearch.cshtml" />
+    <Content Include="Views\CorrectionDelete\Delete.cshtml" />
+    <Content Include="Views\CorrectionDelete\Edit.cshtml" />
+    <Content Include="Views\CorrectionDelete\InitialCoDe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
