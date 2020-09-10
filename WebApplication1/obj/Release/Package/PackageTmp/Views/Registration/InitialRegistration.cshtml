@@ -1,0 +1,231 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model WebApplication1.Models.Flashcard
+@{}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="~/Scripts/jquery-3.4.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            if ($('#textWord').val().length == 0) {
+                $('#submit').attr('disabled', 'disabled');
+            }
+            $('#textWord').bind('keydown keyup keypress change', function () {
+                if ($(this).val().length > 0) {
+                    $('#submit').removeAttr('disabled');
+                } else {
+                    $('#submit').attr('disabled', 'disabled');
+                }
+            });
+        });
+
+    </script>
+
+    <style>
+        ul li {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+            ul li.msg {
+                margin-bottom: 40px;
+            }
+
+        label {
+            margin-right: 10px;
+            width: 50px;
+            float: left;
+        }
+
+        ul {
+            width: 500px;
+            margin: 0 auto;
+        }
+
+
+        input#button {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+
+
+
+    <title>登録画面</title>
+</head>
+<body>
+    <div align="center">
+
+        <h3>登録画面</h3>
+
+        <font color="#ff0000">@ViewData["msg"]</font>
+
+        <form  method="post">
+
+
+            <!-- csrf対策用のtokenを送付 -->
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+
+                <ul>
+
+                    <!-- word -->
+                    <li class="form-group">
+                        <div class="col-md-10">
+                            <label class="control-label col-md-2">単語：</label>
+                            <input type="text" name="Word" maxlength="50" size="50" class="form-control" id="textWord" value="@ViewData["word"]" />
+                            @Html.ValidationMessageFor(model => model.Word, "", new { @class = "text-danger" })
+                        </div>
+                    </li>
+                    <p></p>
+
+                    <!-- meaning -->
+                    <li class="form-group">
+                        <div class="col-md-10">
+                            <label class="control-label col-md-2">意味：</label>
+                            <textarea name="Meaning" cols="50" rows="5" maxlength="250" class="form-control">@ViewData["meaning"]</textarea>
+                            @Html.ValidationMessageFor(model => model.Meaning, "", new { @class = "text-danger" })
+                        </div>
+                    </li>
+                    <p></p>
+
+                    <!-- remarks -->
+                    <li class="form-group">
+                        <div class="col-md-10">
+                            <label class="control-label col-md-2">備考：</label>
+                            <textarea name="Remarks" cols="50" rows="5" maxlength="250" class="form-control">@ViewData["remarks"]</textarea>
+                            @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                        </div>
+                    </li>
+                    <p></p>
+
+                    <!-- submit -->
+                    <li class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="登録" style="width:100px;height:50px" class="btn btn-default" id="submit" />
+                            <input type="button" value="戻る" style="width:100px;height:50px" onclick="location.href='@Url.Action("Main", "Main")'">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@{
+        Layout = null;
+    }
+
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <script type="text/javascript" src="C:\Users\h2-ota\source\repos\WebApplication1\jquery-3.3.1.js"></script>
+        <title>登録画面</title>
+    </head>
+    <body>
+
+        <script type="text/javascript">
+            $(function () {
+                $("textarea").keyup(function () {
+                    var txtcount = $(this).val().length;
+                    $("#txtlmt").text(txtcount);
+                    if (txtcount == 0) {
+                        $("#txtlmt").text("0");
+                    }
+                    if (txtcount >= 7) {
+                        $("#txtlmt").css("color", "#d577ab");
+                    } else {
+                        $("#txtlmt").css("color", "#333");
+                    }
+                });
+            });
+
+            $(function () {
+                $('#Ra').unbind('click');
+                $('#Ra').on('click', function () {
+                    $.ajax({
+                        url: "/Registration/Registration",
+                        type: 'POST',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: 'json',
+                        data: JSON.stringify({
+                            txtValue: $("#txtValue").val()
+
+                        }),
+                        async: false
+                    });
+                });
+            });
+
+        </script>
+
+
+        <div align="center">
+            <h1>登録画面</h1>
+
+            @using (Html.BeginForm(
+            "BtnRegistration",
+            "Registration",
+            null,
+            FormMethod.Post,
+            new { enctype = "multipart/form-data" }
+            ))
+            {
+                <b> 単語：</b>
+                @Html.TextBox("txtWord", "", new { maxlength = 50, size = 30 })
+                <b> 意味：</b>
+                @Html.TextArea("textMeaning", "", new { maxlength = 250, size = 30, rows = 3 })
+                <b> 備考：</b>
+                @Html.TextArea("textRemorks", "", new { maxlength = 250, size = 30, rows = 3 })
+                <input type="submit" value="登録" />
+            }
+        </div>
+
+        <input type="button" value="戻る" style="width:100px;height:50px" onclick="history.back()">
+    </body>
+    </html>*@

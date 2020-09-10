@@ -1,0 +1,70 @@
+﻿@{
+    Layout = null;
+}
+
+@model IEnumerable<WebApplication1.Models.Flashcard>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="~/Script/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+
+
+    </script>
+    <title>検索画面</title>
+</head>
+<body>
+    <div align="center">
+        <h1>検索画面</h1>
+
+        <div>
+            @using (Html.BeginForm(
+            "BtnSearch",
+            "Search",
+            null,
+            FormMethod.Post,
+            new { enctype = "multipart/form-data" }
+            ))
+            {
+                <b> 単語：</b>
+                @Html.TextBox("word", "", new { maxlength = 50, size = 30 })
+                <input type="submit" value="検索" />
+                <input type="button" value="戻る" onclick="location.href='@Url.Action("Main", "Main")'">
+            }
+        </div>
+
+        <h3>一覧</h3>
+            <table border="1" width="100%" class="table" style="table-layout: auto;">
+                <thead>
+                    <tr bgcolor="gray">
+                        <th>ID</th>
+                        <th>単語</th>
+                        <th>意味</th>
+                        <th>備考</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.ID</td>
+                            <td>@item.Word</td>
+                            <td><pre>@item.Meaning</pre></td>
+                            <td><pre>@item.Remarks</pre></td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+    </div>
+</body>
+</html>
